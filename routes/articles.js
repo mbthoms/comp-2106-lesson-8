@@ -95,23 +95,23 @@ router.post('/:id', function(req, res, next){
     });
 });
 
-//GET handler for delete using the article id parameter
+// GET handler for delete using the article id parameter
 router.get('/delete/:id', function(req, res, next) {
-    //grab the id parameter from the url
+    // grab the id parameter from the url
     var id = req.params.id;
-    console.log("Trying to Delete");
-    Articles.remove({ _id: id }, function(err) {
-        if(err) {
+
+    console.log('trying to delete');
+
+    Article.remove({ _id: id }, function(err) {
+        if (err) {
             console.log(err);
             res.end(err);
-        } else {
-            //show updated articles list
-            //res.redirect('/articles');
-            res.end(req.params.id);
         }
-    }
-
-    );
+        else {
+            // show updated articles list
+            res.redirect('/articles');
+        }
+    });
 });
 // make public
 module.exports = router;
